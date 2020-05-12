@@ -1,16 +1,10 @@
-# cloud_storage
+# Easy Assignments
 
-A new Flutter project.
+A Flutter + Firebase App to make Assignments sharing easy. 
 
 ## Getting Started
 
-This project is a starting point for a Flutter application.
-
-A few resources to get you started if this is your first Flutter project:
-
-- [Lab: Write your first Flutter app](https://flutter.dev/docs/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://flutter.dev/docs/cookbook)
-
-For help getting started with Flutter, view our
-[online documentation](https://flutter.dev/docs), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+This project has been created keeping in mind the greatness of the 10 pointer bujjis who struggle with frequent assignment requests
+from the rest of the gang.  
+  
+This app aims to be a one stop solution for bujjis to upload once and also for the peasants who can view it altogether :)  
