@@ -2,23 +2,14 @@ import 'dart:io';
 import 'package:cloud_storage/ViewAssmnts.dart';
 import 'package:cloud_storage/ViewRequests.dart';
 import 'package:progress_dialog/progress_dialog.dart';
-//import 'package:cloud_storage/pages/rootpage.dart';
 import 'package:cloud_storage/services/auth.dart';
 import 'package:file_picker/file_picker.dart';
 import 'package:flutter/material.dart';
 import 'package:path/path.dart';
 import 'package:firebase_storage/firebase_storage.dart';
-// import 'package:firebase_database/firebase_database.dart';
-// import 'package:flutter/services.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 
-
-//void main() => runApp(MyApp());
-
-//final dbstorageRef = FirebaseDatabase.instance.reference();
 final CollectionReference datas = Firestore.instance.collection("clouddata");
-
-//Query lastQuery = dbstorageRef.limitToLast(1);
 
 var name;
 var ext;
@@ -60,13 +51,7 @@ class MyAppState extends State<Upload> {
         status = 'Please Select a File First!!';
       });
     }
-   //pick image   use ImageSource.camera for accessing camera. 
-   //File image = await ImagePicker.pickImage(source: ImageSource.gallery);
-
-   //basename() function will give you the filename
-   //name = basename(file.path);
-
-   //passing your path with the filename to Firebase Storage Reference
+ 
    StorageReference reference =
         _storage.ref().child("Firstfewuploads/$name");
 
@@ -215,31 +200,6 @@ class MyAppState extends State<Upload> {
           ]
     ),
        )
-      
-      //  body: Center(child: Column(
-      //    children: <Widget> [
-      //      Padding(
-      //        padding: const EdgeInsets.all(8.0),
-      //        child: FloatingActionButton(heroTag: 'attach',
-      //          onPressed: () async {  var x =await brwse();
-      //           if(x!=null) { 
-      //               showDialog(
-      //                   barrierDismissible: false,
-      //                   context: context,
-      //                   builder: (BuildContext context) => _buildUploadDialog(context),
-      //               );
-      //           }
-      //         },
-      //          child: Icon(Icons.attach_file), backgroundColor: Colors.green,),
-      //      ),
-      //      Padding(
-      //        padding: const EdgeInsets.all(8.0),
-      //        child: FloatingActionButton(heroTag: 'uload',onPressed: upload, child:Icon(Icons.cloud_upload), backgroundColor: Colors.black,),
-      //      ),
-      //      Text(status),
-      //    ]
-      //  ),   
-      // ),
     );
   }
   Widget _buildUploadDialog(BuildContext context) {
@@ -262,14 +222,6 @@ class MyAppState extends State<Upload> {
                 });
             },
           ),
-          // TextFormField(
-          //   keyboardType: TextInputType.datetime,
-          //   decoration: InputDecoration(
-          //     //hintText: 'Subject', 
-          //   ) ,
-          // ),
-          // _buildAboutText(),
-          // _buildLogoAttribution(),
         ],
       ),
       actions: <Widget>[
