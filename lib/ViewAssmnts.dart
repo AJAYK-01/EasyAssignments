@@ -12,11 +12,14 @@ class View extends StatefulWidget {
 
 class MyAppState extends State<View> {
   final CollectionReference datas = Firestore.instance.collection("clouddata");
+  Color hexToColor(String hexString, {String alphaChannel = 'FF'}) {
+      return Color(int.parse(hexString.replaceFirst('#', '0x$alphaChannel')));
+  }
   var del = false;
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-          appBar: AppBar(backgroundColor: Colors.brown , title: Text('View Assignments'),),
+          appBar: AppBar(backgroundColor: hexToColor('#340072') , title: Text('View Assignments'),),
           body: StreamBuilder<QuerySnapshot> (
           stream: datas.orderBy('time').snapshots(),
           builder: (context, snapshot) {
@@ -79,7 +82,7 @@ class MyAppState extends State<View> {
                   children: <Widget> [
                     Card(
                       shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(40.0)),
-                      color: Colors.brown,
+                      color: hexToColor('#2929a3'),
                       child: ListTileTheme(
                         iconColor: Colors.white,
                         textColor: Colors.white,
@@ -96,9 +99,10 @@ class MyAppState extends State<View> {
 
             return MaterialApp( 
               home: Scaffold(
+                backgroundColor: hexToColor('#111133'),
                 body: ListView(
-                  children: doclist,
-                ),
+                    children: doclist,
+                  ),
               )
             ); 
           },

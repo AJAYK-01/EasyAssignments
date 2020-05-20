@@ -22,55 +22,70 @@ class _WelcomeViewerState extends State<WelcomeViewer> {
       'time': DateTime.now(),
     });
   }
+  Color hexToColor(String hexString, {String alphaChannel = 'FF'}) {
+    return Color(int.parse(hexString.replaceFirst('#', '0x$alphaChannel')));
+  }
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        appBar: AppBar(backgroundColor: Colors.brown, title: Text("Welcome"), actions: <Widget>[FlatButton.icon(textColor: Colors.white , onPressed: logout, icon: Icon(Icons.exit_to_app), label: Text('Logout'))]),
-        body: Column(
-          children: <Widget>[
-              Card(
-                child: InkWell(
-                splashColor: Colors.blue.withAlpha(30),
-                onTap: () {
-                  Navigator.push(context, MaterialPageRoute(builder: (context)=>View()));
-                },
-                child: Container(
-                  height: (MediaQuery.of(context).size.height)/2.4,
-                  width:(MediaQuery.of(context).size.width)/0.1,
-                  child: Row(
-                    mainAxisAlignment: MainAxisAlignment. center, crossAxisAlignment: CrossAxisAlignment.center,
-                    children: <Widget> [
-                        Icon(Icons.view_headline),
-                        Text("\t\tView Assignments"),
-                      ]
+        backgroundColor: hexToColor('#111111'),
+        appBar: AppBar(backgroundColor: hexToColor('#340072'), title: Text("Welcome"), actions: <Widget>[FlatButton.icon(textColor: Colors.white , onPressed: logout, icon: Icon(Icons.exit_to_app), label: Text('Logout'))]),
+        body: Padding(
+          padding: const EdgeInsets.all(4.0),
+          child: Column(
+            children: <Widget>[
+                Padding(
+                  padding: const EdgeInsets.all(1.0),
+                  child: Card(
+                    child: InkWell(
+                    splashColor: Colors.blue.withAlpha(30),
+                    onTap: () {
+                      Navigator.push(context, MaterialPageRoute(builder: (context)=>View()));
+                    },
+                    child: Container(
+                      color: hexToColor('#2929a3'),
+                      height: (MediaQuery.of(context).size.height)/2.4,
+                      width:(MediaQuery.of(context).size.width)/0.1,
+                      child: Row(
+                        mainAxisAlignment: MainAxisAlignment. center, crossAxisAlignment: CrossAxisAlignment.center,
+                        children: <Widget> [
+                            Icon(Icons.view_headline, color: Colors.white,size: 40),
+                            Text("\t\tView Assignments", style: TextStyle(color: Colors.white, fontSize: 23),),
+                          ]
+                        ),
+                      )
                     ),
-                  )
+                  ),
                 ),
-              ),
-              Card(
-                child: InkWell(
-                splashColor: Colors.blue.withAlpha(30),
-                onTap: () {
-                  showDialog(
-                        barrierDismissible: true,
-                        context: context,
-                        builder: (BuildContext context) => _buildRqstDialog(context),
-                    );
-                },
-                child: Container(
-                  height: (MediaQuery.of(context).size.height)/2.4,
-                  width:(MediaQuery.of(context).size.width)/0.1,
-                  child: Row(
-                    mainAxisAlignment: MainAxisAlignment. center, crossAxisAlignment: CrossAxisAlignment.center,
-                    children: <Widget> [
-                        Icon(Icons.chat),
-                        Text("\t\tRequest an Assignment"),
-                      ]
+                Padding(
+                  padding: const EdgeInsets.all(1.0),
+                  child: Card(
+                    child: InkWell(
+                    splashColor: Colors.blue.withAlpha(30),
+                    onTap: () {
+                      showDialog(
+                            barrierDismissible: true,
+                            context: context,
+                            builder: (BuildContext context) => _buildRqstDialog(context),
+                        );
+                    },
+                    child: Container(
+                      color: hexToColor('#2929a3'),
+                      height: (MediaQuery.of(context).size.height)/2.4,
+                      width:(MediaQuery.of(context).size.width)/0.1,
+                      child: Row(
+                        mainAxisAlignment: MainAxisAlignment. center, crossAxisAlignment: CrossAxisAlignment.center,
+                        children: <Widget> [
+                            Icon(Icons.chat,color: Colors.white, size: 40),
+                            Text("\t\tRequest an Assignment",style: TextStyle(color: Colors.white, fontSize: 23)),
+                          ]
+                        ),
+                      )
                     ),
-                  )
+                  ),
                 ),
-              ),
-          ],
+            ],
+          ),
         ),
     );
   }

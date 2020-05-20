@@ -87,6 +87,9 @@ class MyAppState extends State<Upload> {
     await _auths.singOut();
   }
   
+  Color hexToColor(String hexString, {String alphaChannel = 'FF'}) {
+      return Color(int.parse(hexString.replaceFirst('#', '0x$alphaChannel')));
+  }
   @override
   Widget build(BuildContext context) {
     pr = ProgressDialog(context, isDismissible: false,);
@@ -97,100 +100,121 @@ class MyAppState extends State<Upload> {
         child: CircularProgressIndicator(strokeWidth: 4.5,)),
     );
     return Scaffold(
-       appBar: AppBar(backgroundColor: Colors.brown,title: Text('Welcome 10 Pointer :)'), actions: <Widget>[FlatButton.icon(textColor: Colors.white , onPressed: logout, icon: Icon(Icons.exit_to_app), label: Text('Logout'))],), 
-       body: Column(
-        children: <Widget> [
-        Row(
+      backgroundColor: hexToColor('#111133'),
+       appBar: AppBar(backgroundColor:hexToColor('#340072'),title: Text('Welcome 10 Pointer :)'), actions: <Widget>[FlatButton.icon(textColor: Colors.white , onPressed: logout, icon: Icon(Icons.exit_to_app), label: Text('Logout'))],), 
+       body: Padding(
+         padding: const EdgeInsets.all(8.0),
+         child: Column(
           children: <Widget> [
-          Card(
-            child: InkWell(
-              splashColor: Colors.blue.withAlpha(30),
-              onTap: () async {  
-                var x =await brwse();
-                if(x!=null) { 
-                    showDialog(
-                        barrierDismissible: false,
-                        context: context,
-                        builder: (BuildContext context) => _buildUploadDialog(context),
-                    );
-                }
-              },
-              child: Container(
-              height: (MediaQuery.of(context).size.height)/2.4,
-                width:(MediaQuery.of(context).size.width)/2.11,
-                child: Column(
-                  mainAxisAlignment: MainAxisAlignment. center, crossAxisAlignment: CrossAxisAlignment.center,
-                  children: <Widget> [
-                    Icon(Icons.attach_file),
-                    Text("\nNew File"),
-                  ]
+          Row(
+            children: <Widget> [
+            Padding(
+              padding: const EdgeInsets.all(1.0),
+              child: Card(
+                child: InkWell(
+                  splashColor: Colors.blue.withAlpha(30),
+                  onTap: () async {  
+                    var x =await brwse();
+                    if(x!=null) { 
+                        showDialog(
+                            barrierDismissible: false,
+                            context: context,
+                            builder: (BuildContext context) => _buildUploadDialog(context),
+                        );
+                    }
+                  },
+                  child: Container(
+                    color: hexToColor('#2929a3'),  
+                    height: (MediaQuery.of(context).size.height)/2.45,
+                      width:(MediaQuery.of(context).size.width)/2.25,
+                      child: Column(
+                        mainAxisAlignment: MainAxisAlignment. center, crossAxisAlignment: CrossAxisAlignment.center,
+                        children: <Widget> [
+                          Icon(Icons.attach_file, color: Colors.white, size: 42),
+                          Text("\nNew Assignment",style: TextStyle(color: Colors.white, fontSize: 19)),
+                        ]
+                      ),
+                    ),
                 ),
               ),
             ),
-          ),
-          Card(
-            child: InkWell(
-              splashColor: Colors.blue.withAlpha(30),
-              onTap: () {
-                Navigator.push(context, MaterialPageRoute(builder: (context)=>ViewRequests()));
-              },
-              child: Container(
-                height: (MediaQuery.of(context).size.height)/2.4,
-                width:(MediaQuery.of(context).size.width)/2.11,
-              child: Column(
-                mainAxisAlignment: MainAxisAlignment. center, crossAxisAlignment: CrossAxisAlignment.center,
-                children: <Widget>[
-                  Icon(Icons.chat),
-                  Text('\nView Requests'),
-                ],
-              ),
+            Padding(
+              padding: const EdgeInsets.all(1.0),
+              child: Card(
+                child: InkWell(
+                  splashColor: Colors.blue.withAlpha(30),
+                  onTap: () {
+                    Navigator.push(context, MaterialPageRoute(builder: (context)=>ViewRequests()));
+                  },
+                  child: Container(
+                    color: hexToColor('#2929a3'),
+                    height: (MediaQuery.of(context).size.height)/2.45,
+                    width:(MediaQuery.of(context).size.width)/2.25,
+                  child: Column(
+                    mainAxisAlignment: MainAxisAlignment. center, crossAxisAlignment: CrossAxisAlignment.center,
+                    children: <Widget>[
+                      Icon(Icons.chat, color: Colors.white, size: 42),
+                      Text('\nView Requests',style: TextStyle(color: Colors.white, fontSize: 19)),
+                    ],
+                  ),
+                )
+              ),),
             )
-          ),)
-          ],
-        ),
-        Row(
-          children: <Widget> [
-          Card(
-            child: InkWell(
-              splashColor: Colors.blue.withAlpha(30),
-              onTap: () {
-                Navigator.push(context, MaterialPageRoute(builder: (context)=>View()));
-              },
-              child: Container(
-              height: (MediaQuery.of(context).size.height)/2.4,
-                width:(MediaQuery.of(context).size.width)/2.11,
-                child: Column(
-                  mainAxisAlignment: MainAxisAlignment. center, crossAxisAlignment: CrossAxisAlignment.center,
-                  children: <Widget> [
-                    
-                    Icon(Icons.border_color),
-                    Text("\nManage Uploaded Files"),
-                  ]
+            ],
+          ),
+          Row(
+            children: <Widget> [
+            Padding(
+              padding: const EdgeInsets.all(1.0),
+              child: Card(
+                child: InkWell(
+                  splashColor: Colors.blue.withAlpha(30),
+                  onTap: () {
+                    Navigator.push(context, MaterialPageRoute(builder: (context)=>View()));
+                  },
+                  child: Container(
+                    color: hexToColor('#2929a3'),
+                  height: (MediaQuery.of(context).size.height)/2.45,
+                    width:(MediaQuery.of(context).size.width)/2.25,
+                    child: Column(
+                      mainAxisAlignment: MainAxisAlignment. center, crossAxisAlignment: CrossAxisAlignment.center,
+                      children: <Widget> [
+                        
+                        Icon(Icons.edit_location, color:Colors.white, size:42),
+                        Text("\nManage Uploaded",style: TextStyle(color: Colors.white, fontSize: 17)),
+                        Text("Files",style: TextStyle(color: Colors.white, fontSize: 17)),
+                      ]
+                    ),
+                  ),
                 ),
               ),
             ),
+              Padding(
+                padding: const EdgeInsets.all(1.0),
+                child: Card(
+                child: InkWell(
+                  splashColor: Colors.blue.withAlpha(30),
+                  onTap: () {
+                    print('Card tapped.');
+                  },
+                  child: Container(
+                    color: hexToColor('#2929a3'),
+                    height: (MediaQuery.of(context).size.height)/2.45,
+                    width:(MediaQuery.of(context).size.width)/2.25,
+                  child: Column(
+                    mainAxisAlignment: MainAxisAlignment. center, crossAxisAlignment: CrossAxisAlignment.center,
+                    children: <Widget>[
+                      Text('Nothing here :(',style: TextStyle(color: Colors.white)),
+                    ],
+                  ),
+                )
+            ),),
+              )
+            ],
           ),
-            Card(
-            child: InkWell(
-              splashColor: Colors.blue.withAlpha(30),
-              onTap: () {
-                print('Card tapped.');
-              },
-              child: Container(
-                height: (MediaQuery.of(context).size.height)/2.4,
-                width:(MediaQuery.of(context).size.width)/2.11,
-              child: Column(
-                mainAxisAlignment: MainAxisAlignment. center, crossAxisAlignment: CrossAxisAlignment.center,
-                children: <Widget>[
-                  Text('Nothing here :('),
-                ],
-              ),
-            )
-          ),)
-          ],
-        ),
-        ]
-    )
+          ]
+    ),
+       )
       
       //  body: Center(child: Column(
       //    children: <Widget> [

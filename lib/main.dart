@@ -13,10 +13,10 @@ class MyApp extends StatelessWidget {
     return StreamProvider<User>.value(
       value: AuthServ().usr,
       child:  MaterialApp(
-            title: 'Cloud Drive',
-            theme: ThemeData(
-              primarySwatch: Colors.blue,
-            ),
+            title: 'Easy Assignments',
+            // theme: ThemeData(
+            //   primarySwatch: Colors.blue,
+            // ),
             home: Root(), //should be RootPage
             debugShowCheckedModeBanner: false,
           ),
