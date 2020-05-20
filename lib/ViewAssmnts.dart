@@ -4,8 +4,6 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:provider/provider.dart';
 import 'package:url_launcher/url_launcher.dart';
 
-//void main() => runApp(MyApp());
-
 class View extends StatefulWidget {
   MyAppState createState() => new MyAppState();
 }
@@ -30,7 +28,7 @@ class MyAppState extends State<View> {
             }
             final usr = Provider.of<User>(context);
             Icon icon;
-            if(usr.uid == 'NrZKC0phLnfqJh48OQfowSdZSp82')
+            if(usr.uid == 'NrZKC0phLnfqJh48OQfowSdZSp82')  //Replace with UID of uploader, only uploader has permission to delete
             {
                 icon = Icon(Icons.delete);
             }
@@ -58,7 +56,7 @@ class MyAppState extends State<View> {
                 });
               }
               dloadOrDel() {
-                  if(usr.uid == 'NrZKC0phLnfqJh48OQfowSdZSp82')
+                  if(usr.uid == 'NrZKC0phLnfqJh48OQfowSdZSp82') //Replace with UID of uploader
                   {
                       showDialog(
                         barrierDismissible: true,
@@ -88,10 +86,6 @@ class MyAppState extends State<View> {
                         textColor: Colors.white,
                         child: ListTile(title: Text(title), trailing: icon, onTap: dloadOrDel, ))
                     )
-                    // Text(title),
-                    // //Text(url),
-                    // RaisedButton(onPressed: dload, child: Text("Download"),),
-                    // Text(''),
                   ]
                 )
               );
