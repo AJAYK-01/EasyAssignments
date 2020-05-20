@@ -1,4 +1,3 @@
-//import 'package:cloud_storage/ViewAssmnts.dart';
 import 'package:cloud_storage/WelcomeViewer.dart';
 import 'package:cloud_storage/services/auth.dart';
 import 'package:flutter/material.dart';
@@ -15,9 +14,9 @@ class Root extends StatelessWidget {
     // return LoginPage() or Upload() depending on auth 
     if(usr == null)
         return LoginPage();
-    else if(usr.uid == 'NrZKC0phLnfqJh48OQfowSdZSp82')
+    else if(usr.uid == 'NrZKC0phLnfqJh48OQfowSdZSp82') // Replace with the UID of Uploader
         return Upload();
-    else if(usr.uid == 'DNEiZoHcVGZbDa0SPOGbkGoU2hy2')
+    else if(usr.uid == 'DNEiZoHcVGZbDa0SPOGbkGoU2hy2') // Replace with UID of Viewer
         return WelcomeViewer(); 
     return LoginPage(); 
   }
