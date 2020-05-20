@@ -1,16 +1,10 @@
-// import 'package:cloud_storage/Uploads.dart';
 import 'package:cloud_storage/services/auth.dart';
 import 'package:flutter/material.dart';
-// import 'package:cloud_storage/widget/button.dart';
 import 'package:cloud_storage/widget/first.dart';
-//import 'package:cloud_storage/widget/forgot.dart';
-// import 'package:cloud_storage/widget/inputEmail.dart';
-// import 'package:cloud_storage/widget/password.dart';
 import 'package:cloud_storage/widget/textLogin.dart';
 import 'package:cloud_storage/widget/verticalText.dart';
 
-//final _formKey = new GlobalKey<FormState>();
- String _email;
+String _email;
 String _password;
 
 class LoginPage extends StatefulWidget {
@@ -81,16 +75,12 @@ class InputEmailState extends State<InputEmail> {
           onChanged: (value) { setState(() {
               if(value.isNotEmpty)
               {    _email = '$value@gmail.com'.trim();
-                 // print(getusrnm()); 
                  }
               else{ 
-                  // print(getusrnm());
                    print('Error');
               }
           }); },
-         // validator: (value) => value.isEmpty ? 'Email can\'t be empty' : null,
-         // onSaved: (value) {usrnm = '$value@gmail.com'.trim(); }//print(usrnm);,
-        ),
+         ),
       ),
     );
   }
@@ -127,9 +117,7 @@ class PasswordInputState extends State<PasswordInput> {
             else
                 print('Error');
           }); },
-          // validator: (value) => value.isEmpty ? 'Please enter password!' : null,
-          // onSaved: (value) => _password = '$value'.trim(),
-        ),
+         ),
       ),
     );
   }
@@ -157,8 +145,7 @@ class _ButtonLoginState extends State<ButtonLogin> {
         print(result);
         _password = '######################';
         _email = '#############';
-        //Navigator.push(context, MaterialPageRoute(builder: (BuildContext context) => Upload()));
-   }
+        }
   }
   @override
   Widget build(BuildContext context) {
