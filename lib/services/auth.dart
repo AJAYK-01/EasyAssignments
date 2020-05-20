@@ -1,5 +1,4 @@
 import 'package:firebase_auth/firebase_auth.dart';
-//import 'package:cloud_storage/widget/inputEmail.dart';
 
 class User {
     final String uid, uname;
@@ -13,7 +12,7 @@ class AuthServ {
     }
 
     // user auth change stream
-    Stream</*FirebaseUser*/User> get usr {
+    Stream<User> get usr {
         return  _auth.onAuthStateChanged.map((FirebaseUser user) => createFBaseUser(user)); //or just .map(createFBaseUser);
     }
 
