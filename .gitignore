@@ -23,6 +23,7 @@
 # Flutter/Dart/Pub related
 **/doc/api/
 .dart_tool/
+pubspec.lock
 .flutter-plugins
 .flutter-plugins-dependencies
 .packages
@@ -35,4 +36,5 @@ lib/generated_plugin_registrant.dart
 
 # Exceptions to above rules.
 !/packages/flutter_tools/test/data/dart_dependencies_test/**/.packages
+pubspec.lock
 pubspec.lock
