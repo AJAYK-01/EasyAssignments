@@ -29,6 +29,7 @@ class _ViewRequestsState extends State<ViewRequests> {
             for(var doc in docs) {
               final title = doc.data['title'];
               final docid = doc.documentID;
+              final count = doc.data['number'];
               delete() async {
                 setState(() async {
                      await rqstData.document(docid).delete();
@@ -44,7 +45,7 @@ class _ViewRequestsState extends State<ViewRequests> {
                       child: ListTileTheme(
                         iconColor: Colors.white,
                         textColor: Colors.white,
-                        child: ListTile(title: Text(title), trailing: Icon(Icons.done), onTap: delete, ))
+                        child: ListTile(title: Text(title+'\t\t\t$count\tRequests'), trailing: Icon(Icons.done), onTap: delete, ))
                     )
                   ]
                 )

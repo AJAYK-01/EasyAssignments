@@ -101,7 +101,7 @@ class MyAppState extends State<Upload> {
     );
     return Scaffold(
       backgroundColor: hexToColor('#111133'),
-       appBar: AppBar(backgroundColor:hexToColor('#340072'),title: Text('Welcome 10 Pointer :)'), actions: <Widget>[FlatButton.icon(textColor: Colors.white , onPressed: logout, icon: Icon(Icons.exit_to_app), label: Text('Logout'))],), 
+       appBar: AppBar(backgroundColor:hexToColor('#340072'),title: Text('Welcome 10 Pointer'), actions: <Widget>[FlatButton.icon(textColor: Colors.white , onPressed: logout, icon: Icon(Icons.exit_to_app), label: Text('Logout'))],), 
        body: Padding(
          padding: const EdgeInsets.all(8.0),
          child: Column(
