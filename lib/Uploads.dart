@@ -1,6 +1,7 @@
 import 'dart:io';
 import 'package:cloud_storage/ViewAssmnts.dart';
 import 'package:cloud_storage/ViewRequests.dart';
+import 'package:flushbar/flushbar.dart';
 import 'package:progress_dialog/progress_dialog.dart';
 //import 'package:cloud_storage/pages/rootpage.dart';
 import 'package:cloud_storage/services/auth.dart';
@@ -35,6 +36,7 @@ class MyAppState extends State<Upload> {
   FirebaseStorage _storage = FirebaseStorage.instance;
   final AuthServ _auths = AuthServ();
   ProgressDialog pr;
+  bool success = false;
   
   createRecord() async {
     await datas.add({
@@ -116,11 +118,28 @@ class MyAppState extends State<Upload> {
                   onTap: () async {  
                     var x =await brwse();
                     if(x!=null) { 
-                        showDialog(
+                        await showDialog(
                             barrierDismissible: false,
                             context: context,
                             builder: (BuildContext context) => _buildUploadDialog(context),
                         );
+                        if(success) {
+                          await pr.show();
+                          var x = await upload();
+                          ext = null;
+                          if(x != null) {
+                              await pr.hide();
+                              Flushbar(
+                                message: 'Lorem Ipsum',
+                                backgroundColor: Colors.white,
+                                icon: Icon(Icons.check_circle),
+                                messageText: Text('Uploaded Succesfully', style: TextStyle(fontSize: 14),),
+                                flushbarStyle: FlushbarStyle.FLOATING,
+                                duration: Duration(seconds: 3),
+                              )..show(context);
+                          }
+                          success = false;
+                        }                        
                     }
                   },
                   child: Container(
@@ -284,13 +303,8 @@ class MyAppState extends State<Upload> {
         ),
         FlatButton(
           onPressed: () async {
+            success = true;
             Navigator.of(context).pop();
-            await pr.show();
-            var x = await upload();
-            ext = null;
-            if(x != null) {
-                await pr.hide();
-            }
           },
           textColor: Theme.of(context).primaryColor,
           child: Text('Upload'),

@@ -3,6 +3,7 @@ import 'package:cloud_storage/ViewAssmnts.dart';
 import 'package:cloud_storage/services/auth.dart';
 import 'package:flutter/material.dart';
 import 'package:imagebutton/imagebutton.dart';
+import 'package:flushbar/flushbar.dart';
 
 class WelcomeViewer extends StatefulWidget {
   @override
@@ -14,7 +15,7 @@ class _WelcomeViewerState extends State<WelcomeViewer> {
   final CollectionReference rqData = Firestore.instance.collection("requests");
   var items = [ "Maths", "Graphics", "EEE", "EC", "PRC", "PCOM"];
   final AuthServ _auths = AuthServ();
-  var rqst;
+  var rqst, showSuccess = false;
   logout () async {
     await _auths.singOut();
   }
@@ -68,12 +69,23 @@ class _WelcomeViewerState extends State<WelcomeViewer> {
                           children: <Widget> [], 
                           unpressedImage: Image.asset('images/request-bg.png'), 
                           pressedImage: Image.asset('images/request-bg.png'),
-                          onTap: () {
-                            showDialog(
+                          onTap: () async {
+                            await showDialog(
                                     barrierDismissible: true,
                                     context: context,
                                     builder: (BuildContext context) => _buildRqstDialog(context),
                                 );
+                                if(showSuccess) {                                  
+                                  Flushbar(
+                                    message: 'Lorem Ipsum',
+                                    backgroundColor: Colors.white,
+                                    icon: Icon(Icons.check_circle),
+                                    messageText: Text('Request Sent', style: TextStyle(fontSize: 14),),
+                                    flushbarStyle: FlushbarStyle.FLOATING,
+                                    duration: Duration(seconds: 3),
+                                  )..show(context);
+                                  showSuccess = false;
+                                }
                           },
                         ),
                         Text("\nRequest an Assignment", style: TextStyle(color: Colors.white, fontSize: 15.5)),
@@ -138,6 +150,7 @@ class _WelcomeViewerState extends State<WelcomeViewer> {
             if(rqst!=null) { 
               await createRequest(rqst);
               rqst = null;
+              showSuccess = true;
               Navigator.of(context).pop();
             }
           },

@@ -52,15 +52,15 @@ class MyAppState extends State<View> {
                     throw 'Could not launch ';
                   }
               }
-              delete() async {
+              delete() {
                 setState(() async {
-                     await datas.document(docid).delete();
+                   await datas.document(docid).delete();
                 });
               }
-              dloadOrDel() {
+              dloadOrDel() async {
                   if(usr.uid == 'NrZKC0phLnfqJh48OQfowSdZSp82')
                   {
-                      showDialog(
+                      await showDialog(
                         barrierDismissible: true,
                         context: context,
                         builder: (BuildContext context) => _delDialog(context),
@@ -117,11 +117,9 @@ class MyAppState extends State<View> {
     child: Text('No'),
     ),
     FlatButton(
-      onPressed: () async {
-        setState(() {
-          del = true;
-       });
-      Navigator.of(context).pop();
+      onPressed: () {
+        del = true;
+        Navigator.of(context).pop();
       },
       textColor: Theme.of(context).primaryColor,
       child: Text('Yes'),
