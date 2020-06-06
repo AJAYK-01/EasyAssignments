@@ -12,16 +12,19 @@ class WelcomeViewer extends StatefulWidget {
 class _WelcomeViewerState extends State<WelcomeViewer> {
   
   final CollectionReference rqData = Firestore.instance.collection("requests");
+  var items = [ "Maths", "Graphics", "EEE", "EC", "PRC", "PCOM"];
   final AuthServ _auths = AuthServ();
   var rqst;
   logout () async {
     await _auths.singOut();
   }
   createRequest(request) async {
-    await rqData.add({
+    await rqData.document(request).setData({
       'title': request,
       'time': DateTime.now(),
-    });
+      'number': FieldValue.increment(1),
+     },merge: true,
+    );
   }
   Color hexToColor(String hexString, {String alphaChannel = 'FF'}) {
     return Color(int.parse(hexString.replaceFirst('#', '0x$alphaChannel')));
@@ -29,86 +32,95 @@ class _WelcomeViewerState extends State<WelcomeViewer> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        backgroundColor: hexToColor('#111111'),
+        backgroundColor: hexToColor('#111133'),
         appBar: AppBar(backgroundColor: hexToColor('#340072'), title: Text("Welcome"), actions: <Widget>[FlatButton.icon(textColor: Colors.white , onPressed: logout, icon: Icon(Icons.exit_to_app), label: Text('Logout'))]),
         body: Padding(
           padding: const EdgeInsets.all(4.0),
-          child: Column(
-            children: <Widget>[
-                Padding(
-                  padding: const EdgeInsets.all(1.0),
-                  child: Card(
-                    child: InkWell(
-                    splashColor: Colors.blue.withAlpha(30),
-                    onTap: () {
-                      Navigator.push(context, MaterialPageRoute(builder: (context)=>View()));
-                    },
-                    child: Container(
-                      color: hexToColor('#2929a3'),
-                      height: (MediaQuery.of(context).size.height)/2.4,
-                      width:(MediaQuery.of(context).size.width)/0.1,
-                      child: Row(
-                        mainAxisAlignment: MainAxisAlignment. center, crossAxisAlignment: CrossAxisAlignment.center,
-                        children: <Widget> [
-                            Icon(Icons.view_headline, color: Colors.white,size: 40),
-                            Text("\t\tView Assignments", style: TextStyle(color: Colors.white, fontSize: 23),),
-                          ]
+          child: Center(
+            child: Column(
+              mainAxisAlignment: MainAxisAlignment. center, crossAxisAlignment: CrossAxisAlignment.center,
+              children: <Widget>[
+                  Padding(
+                    padding: const EdgeInsets.all(45.0),
+                    child: Column(
+                      children: <Widget>[
+                        ImageButton(
+                          height: 100,
+                          width: 100,
+                          children: <Widget> [], 
+                          unpressedImage: Image.asset('images/download-bg.png'), 
+                          pressedImage: Image.asset('images/download-bg.png'),
+                          onTap: () {
+                            Navigator.push(context, MaterialPageRoute(builder: (context)=>View()));
+                          },
                         ),
-                      )
+                        Text("\nDownload Assignments", style: TextStyle(color: Colors.white, fontSize: 15.5)),
+                      ],
                     ),
                   ),
-                ),
-                Padding(
-                  padding: const EdgeInsets.all(1.0),
-                  child: Card(
-                    child: InkWell(
-                    splashColor: Colors.blue.withAlpha(30),
-                    onTap: () {
-                      showDialog(
-                            barrierDismissible: true,
-                            context: context,
-                            builder: (BuildContext context) => _buildRqstDialog(context),
-                        );
-                    },
-                    child: Container(
-                      color: hexToColor('#2929a3'),
-                      height: (MediaQuery.of(context).size.height)/2.4,
-                      width:(MediaQuery.of(context).size.width)/0.1,
-                      child: Row(
-                        mainAxisAlignment: MainAxisAlignment. center, crossAxisAlignment: CrossAxisAlignment.center,
-                        children: <Widget> [
-                            Icon(Icons.chat,color: Colors.white, size: 40),
-                            Text("\t\tRequest an Assignment",style: TextStyle(color: Colors.white, fontSize: 23)),
-                          ]
+                  Padding(
+                    padding: const EdgeInsets.all(68.0),
+                    child: Column(
+                      children: <Widget>[
+                        ImageButton(
+                          height: 100,
+                          width: 100,
+                          children: <Widget> [], 
+                          unpressedImage: Image.asset('images/request-bg.png'), 
+                          pressedImage: Image.asset('images/request-bg.png'),
+                          onTap: () {
+                            showDialog(
+                                    barrierDismissible: true,
+                                    context: context,
+                                    builder: (BuildContext context) => _buildRqstDialog(context),
+                                );
+                          },
                         ),
-                      )
+                        Text("\nRequest an Assignment", style: TextStyle(color: Colors.white, fontSize: 15.5)),
+                      ],
                     ),
                   ),
-                ),
-            ],
+              ],
+            ),
           ),
         ),
     );
   }
 
   Widget _buildRqstDialog(BuildContext context) {
+    
     return AlertDialog(
-      title: Text('Submit a Request'),
+      title: Text('Submit a Request', style: TextStyle(color: Colors.white),),
+      backgroundColor: hexToColor('#111133'),
       content: Column(
         mainAxisSize: MainAxisSize.min,
         crossAxisAlignment: CrossAxisAlignment.start,
         children: <Widget>[
-          TextFormField(
-            autofocus: true,
-            keyboardType: TextInputType.text,
-            decoration: InputDecoration(
-              hintText: 'Assignment Name', 
+          Theme(
+              data: Theme.of(context).copyWith(canvasColor: hexToColor('#380080')),
+              child: DropdownButtonFormField(
+              hint: Text("Select Subject", style: TextStyle(color: Colors.white),),
+              isDense: true,
+              decoration: InputDecoration(
+                fillColor: hexToColor('#111133'),
+                filled: true,
+              ),
+              items: items.map((listItem) {
+                return DropdownMenuItem(
+                value: listItem,
+                child: Row(
+                  children: <Widget>[
+                    Text(listItem, style: TextStyle(color: Colors.white),),
+                  ],
+                )
+                );
+              }).toList(),
+              onChanged: (value) {
+                  setState(() {
+                      rqst = value;
+                  });
+              },
             ),
-            onChanged: (value) {
-                setState(() {
-                    rqst = value;
-                });
-            },
           ),
         ],
       ),
@@ -123,9 +135,11 @@ class _WelcomeViewerState extends State<WelcomeViewer> {
         ),
         FlatButton(
           onPressed: () async {
-            await createRequest(rqst);
-            rqst = null;
-            Navigator.of(context).pop();
+            if(rqst!=null) { 
+              await createRequest(rqst);
+              rqst = null;
+              Navigator.of(context).pop();
+            }
           },
           textColor: Theme.of(context).primaryColor,
           child: Text('Send Request'),

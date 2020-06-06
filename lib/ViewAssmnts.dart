@@ -87,11 +87,7 @@ class MyAppState extends State<View> {
                         iconColor: Colors.white,
                         textColor: Colors.white,
                         child: ListTile(title: Text(title), trailing: icon, onTap: dloadOrDel, ))
-                    )
-                    // Text(title),
-                    // //Text(url),
-                    // RaisedButton(onPressed: dload, child: Text("Download"),),
-                    // Text(''),
+                    ),
                   ]
                 )
               );
