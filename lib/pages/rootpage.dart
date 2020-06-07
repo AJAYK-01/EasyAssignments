@@ -1,6 +1,7 @@
 //import 'package:cloud_storage/ViewAssmnts.dart';
-import 'package:cloud_storage/WelcomeViewer.dart';
+//import 'package:cloud_storage/WelcomeViewer.dart';
 import 'package:cloud_storage/services/auth.dart';
+import 'package:cloud_storage/services/notifications.dart';
 import 'package:flutter/material.dart';
 import 'package:cloud_storage/Uploads.dart';
 import 'package:provider/provider.dart';
@@ -18,7 +19,7 @@ class Root extends StatelessWidget {
     else if(usr.uid == 'NrZKC0phLnfqJh48OQfowSdZSp82')
         return Upload();
     else if(usr.uid == 'DNEiZoHcVGZbDa0SPOGbkGoU2hy2')
-        return WelcomeViewer(); 
+        return NotificationHandler(); 
     return LoginPage(); 
   }
 }
