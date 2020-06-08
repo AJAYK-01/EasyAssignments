@@ -42,7 +42,7 @@ class MyAppState extends State<Upload> {
     await datas.add({
       'title': name,
       'Link': url,
-      'time': DateTime.now(),
+      'time': Timestamp.now(),
     });
   }
   brwse() async {

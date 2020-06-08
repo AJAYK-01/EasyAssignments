@@ -13,12 +13,22 @@ class Root extends StatelessWidget {
   Widget build(BuildContext context) {
 
     final usr = Provider.of<User>(context);
+    final upldrs = Provider.of<List<Uploaders>>(context);
+    bool key = false;
+    if(usr!=null) {
+      for (var upldr in upldrs) {
+        if(usr.uid == upldr.id) {
+          key = true;
+          break;
+        }
+      }
+    }
     // return LoginPage() or Upload() depending on auth 
     if(usr == null)
         return LoginPage();
-    else if(usr.uid == 'NrZKC0phLnfqJh48OQfowSdZSp82')
+    else if(key)
         return Upload();
-    else if(usr.uid == 'DNEiZoHcVGZbDa0SPOGbkGoU2hy2')
+    else if(!key)
         return NotificationHandler(); 
     return LoginPage(); 
   }

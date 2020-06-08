@@ -10,16 +10,20 @@ class MyApp extends StatelessWidget {
   
   @override
   Widget build(BuildContext context) {
-    return StreamProvider<User>.value(
-      value: AuthServ().usr,
-      child:  MaterialApp(
-            title: 'Easy Assignments',
-            // theme: ThemeData(
-            //   primarySwatch: Colors.blue,
-            // ),
-            home: Root(), //should be RootPage
-            debugShowCheckedModeBanner: false,
-          ),
+    return MultiProvider(
+        providers: [
+          StreamProvider<User>.value(
+            value: AuthServ().usr),
+          StreamProvider<List<Uploaders>>.value(value: Uploaders('uploader').streamOfUsers())
+        ],
+        child:  MaterialApp(
+              title: 'Easy Assignments',
+              // theme: ThemeData(
+              //   primarySwatch: Colors.blue,
+              // ),
+              home: Root(), //should be RootPage
+              debugShowCheckedModeBanner: false,
+            ),
     );
   }
 }

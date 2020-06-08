@@ -29,8 +29,18 @@ class MyAppState extends State<View> {
               );
             }
             final usr = Provider.of<User>(context);
+            final upldrs = Provider.of<List<Uploaders>>(context);
+            bool key = false;
+            if(usr != null) { 
+              for(var upldr in upldrs) {
+                if(usr.uid == upldr.id) {
+                    key = true;
+                    break;
+                }
+              }
+            }
             Icon icon;
-            if(usr.uid == 'NrZKC0phLnfqJh48OQfowSdZSp82')
+            if(key)
             {
                 icon = Icon(Icons.delete);
             }

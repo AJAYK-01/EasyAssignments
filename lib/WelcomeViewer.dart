@@ -22,7 +22,7 @@ class _WelcomeViewerState extends State<WelcomeViewer> {
   createRequest(request) async {
     await rqData.document(request).setData({
       'title': request,
-      'time': DateTime.now(),
+      'time': Timestamp.now(),
       'number': FieldValue.increment(1),
      },merge: true,
     );
