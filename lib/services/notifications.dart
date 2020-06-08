@@ -39,11 +39,10 @@ class _NotificationHandlerState extends State<NotificationHandler> {
         },
         onLaunch: (Map<String, dynamic> message) async {
             print("onLaunch: $message");
-            Navigator.push(context, MaterialPageRoute(builder: (context)=>View()));
+            Navigator.push(context, MaterialPageRoute(builder: (context)=>View(false)));
         },
         onResume: (Map<String, dynamic> message) async {
             print("onResume: $message");
-            // TODO optional
         },
       );
     }

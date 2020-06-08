@@ -1,16 +1,21 @@
-import 'package:cloud_storage/services/auth.dart';
+//import 'package:cloud_storage/services/auth.dart';
+import 'package:flushbar/flushbar.dart';
 import 'package:flutter/material.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:provider/provider.dart';
+//import 'package:provider/provider.dart';
 import 'package:url_launcher/url_launcher.dart';
 
 //void main() => runApp(MyApp());
 
 class View extends StatefulWidget {
-  MyAppState createState() => new MyAppState();
+  final uploader;
+  View(this.uploader);
+  MyAppState createState() => new MyAppState(this.uploader);
 }
 
 class MyAppState extends State<View> {
+  final uploader;
+  MyAppState(this.uploader);
   final CollectionReference datas = Firestore.instance.collection("clouddata");
   Color hexToColor(String hexString, {String alphaChannel = 'FF'}) {
       return Color(int.parse(hexString.replaceFirst('#', '0x$alphaChannel')));
@@ -28,25 +33,8 @@ class MyAppState extends State<View> {
                 child: CircularProgressIndicator(),
               );
             }
-            final usr = Provider.of<User>(context);
-            final upldrs = Provider.of<List<Uploaders>>(context);
-            bool key = false;
-            if(usr != null) { 
-              for(var upldr in upldrs) {
-                if(usr.uid == upldr.id) {
-                    key = true;
-                    break;
-                }
-              }
-            }
             Icon icon;
-            if(key)
-            {
-                icon = Icon(Icons.delete);
-            }
-            else {
-                icon = Icon(Icons.arrow_downward);
-            }
+            icon = Icon(Icons.arrow_downward);
             var docs = snapshot.data.documents.reversed;
             List<Widget> doclist = [];
             for(var doc in docs) {
@@ -68,7 +56,7 @@ class MyAppState extends State<View> {
                 });
               }
               dloadOrDel() async {
-                  if(usr.uid == 'NrZKC0phLnfqJh48OQfowSdZSp82')
+                  if(this.uploader)
                   {
                       await showDialog(
                         barrierDismissible: true,
@@ -96,7 +84,7 @@ class MyAppState extends State<View> {
                       child: ListTileTheme(
                         iconColor: Colors.white,
                         textColor: Colors.white,
-                        child: ListTile(title: Text(title), trailing: icon, onTap: dloadOrDel, ))
+                        child: ListTile(title: Text(title), trailing: icon, onTap: dload,onLongPress: dloadOrDel, ))
                     ),
                   ]
                 )

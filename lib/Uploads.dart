@@ -9,6 +9,7 @@ import 'package:file_picker/file_picker.dart';
 import 'package:flutter/material.dart';
 import 'package:path/path.dart';
 import 'package:firebase_storage/firebase_storage.dart';
+import 'package:imagebutton/imagebutton.dart';
 // import 'package:firebase_database/firebase_database.dart';
 // import 'package:flutter/services.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
@@ -107,158 +108,99 @@ class MyAppState extends State<Upload> {
        body: Padding(
          padding: const EdgeInsets.all(8.0),
          child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
           children: <Widget> [
-          Row(
-            children: <Widget> [
+          Center(
+            child:
             Padding(
-              padding: const EdgeInsets.all(1.0),
-              child: Card(
-                child: InkWell(
-                  splashColor: Colors.blue.withAlpha(30),
-                  onTap: () async {  
-                    var x =await brwse();
-                    if(x!=null) { 
-                        await showDialog(
-                            barrierDismissible: false,
-                            context: context,
-                            builder: (BuildContext context) => _buildUploadDialog(context),
-                        );
-                        if(success) {
-                          await pr.show();
-                          var x = await upload();
-                          ext = null;
-                          if(x != null) {
-                              await pr.hide();
-                              Flushbar(
-                                message: 'Lorem Ipsum',
-                                backgroundColor: Colors.white,
-                                icon: Icon(Icons.check_circle),
-                                messageText: Text('Uploaded Succesfully', style: TextStyle(fontSize: 14),),
-                                flushbarStyle: FlushbarStyle.FLOATING,
-                                duration: Duration(seconds: 3),
-                              )..show(context);
-                          }
-                          success = false;
-                        }                        
-                    }
-                  },
-                  child: Container(
-                    color: hexToColor('#2929a3'),  
-                    height: (MediaQuery.of(context).size.height)/2.45,
-                      width:(MediaQuery.of(context).size.width)/2.25,
-                      child: Column(
-                        mainAxisAlignment: MainAxisAlignment. center, crossAxisAlignment: CrossAxisAlignment.center,
-                        children: <Widget> [
-                          Icon(Icons.attach_file, color: Colors.white, size: 42),
-                          Text("\nNew Assignment",style: TextStyle(color: Colors.white, fontSize: 19)),
-                        ]
-                      ),
+              padding: const EdgeInsets.all(38.0),
+              child: Column(
+                children: <Widget>[
+                  ImageButton(
+                      children: <Widget>[],
+                      height: 91,
+                      width: 91,
+                      pressedImage: Image.asset('images/upload-bg.png'),
+                      unpressedImage: Image.asset('images/upload-bg.png'),
+                      onTap: () async {  
+                        var x =await brwse();
+                        if(x!=null) { 
+                            await showDialog(
+                                barrierDismissible: false,
+                                context: context,
+                                builder: (BuildContext context) => _buildUploadDialog(context),
+                            );
+                            if(success) {
+                              await pr.show();
+                              var x = await upload();
+                              ext = null;
+                              if(x != null) {
+                                  await pr.hide();
+                                  Flushbar(
+                                    message: 'Lorem Ipsum',
+                                    backgroundColor: Colors.white,
+                                    icon: Icon(Icons.check_circle),
+                                    messageText: Text('Uploaded Succesfully', style: TextStyle(fontSize: 14),),
+                                    flushbarStyle: FlushbarStyle.FLOATING,
+                                    duration: Duration(seconds: 3),
+                                  )..show(context);
+                              }
+                              success = false;
+                            }                        
+                        }
+                      },
                     ),
-                ),
+                    Text("\nNew Assignment", style: TextStyle(color: Colors.white, fontSize: 15.5)),
+                ],
               ),
-            ),
-            Padding(
-              padding: const EdgeInsets.all(1.0),
-              child: Card(
-                child: InkWell(
-                  splashColor: Colors.blue.withAlpha(30),
-                  onTap: () {
-                    Navigator.push(context, MaterialPageRoute(builder: (context)=>ViewRequests()));
-                  },
-                  child: Container(
-                    color: hexToColor('#2929a3'),
-                    height: (MediaQuery.of(context).size.height)/2.45,
-                    width:(MediaQuery.of(context).size.width)/2.25,
-                  child: Column(
-                    mainAxisAlignment: MainAxisAlignment. center, crossAxisAlignment: CrossAxisAlignment.center,
-                    children: <Widget>[
-                      Icon(Icons.chat, color: Colors.white, size: 42),
-                      Text('\nView Requests',style: TextStyle(color: Colors.white, fontSize: 19)),
-                    ],
-                  ),
-                )
-              ),),
-            )
-            ],
+              ),
           ),
           Row(
+            mainAxisAlignment: MainAxisAlignment.center,
             children: <Widget> [
-            Padding(
-              padding: const EdgeInsets.all(1.0),
-              child: Card(
-                child: InkWell(
-                  splashColor: Colors.blue.withAlpha(30),
-                  onTap: () {
-                    Navigator.push(context, MaterialPageRoute(builder: (context)=>View()));
-                  },
-                  child: Container(
-                    color: hexToColor('#2929a3'),
-                  height: (MediaQuery.of(context).size.height)/2.45,
-                    width:(MediaQuery.of(context).size.width)/2.25,
-                    child: Column(
-                      mainAxisAlignment: MainAxisAlignment. center, crossAxisAlignment: CrossAxisAlignment.center,
-                      children: <Widget> [
-                        
-                        Icon(Icons.edit_location, color:Colors.white, size:42),
-                        Text("\nManage Uploaded",style: TextStyle(color: Colors.white, fontSize: 17)),
-                        Text("Files",style: TextStyle(color: Colors.white, fontSize: 17)),
-                      ]
-                    ),
+             Padding(
+              padding: const EdgeInsets.all(23.0),
+              child: Column(
+                children: <Widget> [
+                  ImageButton(
+                    children: <Widget>[],
+                    height: 91,
+                    width: 91,
+                    unpressedImage: Image.asset('images/request-bg.png'),
+                    pressedImage: Image.asset('images/request-bg.png'),
+                    onTap: () {
+                      Navigator.push(context, MaterialPageRoute(builder: (context)=>ViewRequests()));
+                    },
                   ),
-                ),
-              ),
-            ),
-              Padding(
-                padding: const EdgeInsets.all(1.0),
-                child: Card(
-                child: InkWell(
-                  splashColor: Colors.blue.withAlpha(30),
-                  onTap: () {
-                    print('Card tapped.');
-                  },
-                  child: Container(
-                    color: hexToColor('#2929a3'),
-                    height: (MediaQuery.of(context).size.height)/2.45,
-                    width:(MediaQuery.of(context).size.width)/2.25,
-                  child: Column(
-                    mainAxisAlignment: MainAxisAlignment. center, crossAxisAlignment: CrossAxisAlignment.center,
-                    children: <Widget>[
-                      Text('Nothing here :(',style: TextStyle(color: Colors.white)),
-                    ],
-                  ),
-                )
-            ),),
+                  Text("\nView Requests", style: TextStyle(color: Colors.white, fontSize: 15.5)),
+                  Text(" ")
+                ]
               )
+            ),  
+            Padding(
+              padding: const EdgeInsets.all(23.0),
+              child: Column(
+                children: <Widget>[
+                  ImageButton(
+                    children: <Widget>[],
+                    height: 91,
+                    width: 91,
+                    pressedImage: Image.asset('images/manage-bg.png'),
+                    unpressedImage: Image.asset('images/manage-bg.png'),
+                    onTap: () {
+                      Navigator.push(context, MaterialPageRoute(builder: (context)=>View(true)));
+                    },          
+                  ),
+                  Text("\nManage Uploaded", style: TextStyle(color: Colors.white, fontSize: 15)),
+                  Text("Files", style: TextStyle(color: Colors.white, fontSize: 15)),
+                  ],
+                ),
+              ),
             ],
           ),
-          ]
-    ),
-       )
-      
-      //  body: Center(child: Column(
-      //    children: <Widget> [
-      //      Padding(
-      //        padding: const EdgeInsets.all(8.0),
-      //        child: FloatingActionButton(heroTag: 'attach',
-      //          onPressed: () async {  var x =await brwse();
-      //           if(x!=null) { 
-      //               showDialog(
-      //                   barrierDismissible: false,
-      //                   context: context,
-      //                   builder: (BuildContext context) => _buildUploadDialog(context),
-      //               );
-      //           }
-      //         },
-      //          child: Icon(Icons.attach_file), backgroundColor: Colors.green,),
-      //      ),
-      //      Padding(
-      //        padding: const EdgeInsets.all(8.0),
-      //        child: FloatingActionButton(heroTag: 'uload',onPressed: upload, child:Icon(Icons.cloud_upload), backgroundColor: Colors.black,),
-      //      ),
-      //      Text(status),
-      //    ]
-      //  ),   
-      // ),
+         ]
+      ),
+     )
     );
   }
   Widget _buildUploadDialog(BuildContext context) {
@@ -281,14 +223,6 @@ class MyAppState extends State<Upload> {
                 });
             },
           ),
-          // TextFormField(
-          //   keyboardType: TextInputType.datetime,
-          //   decoration: InputDecoration(
-          //     //hintText: 'Subject', 
-          //   ) ,
-          // ),
-          // _buildAboutText(),
-          // _buildLogoAttribution(),
         ],
       ),
       actions: <Widget>[
