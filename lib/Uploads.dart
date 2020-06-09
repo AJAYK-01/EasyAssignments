@@ -238,6 +238,9 @@ class MyAppState extends State<Upload> {
         FlatButton(
           onPressed: () async {
             success = true;
+            if(name == null) {
+              name = 'Untitled+$ext';
+            }
             Navigator.of(context).pop();
           },
           textColor: Theme.of(context).primaryColor,

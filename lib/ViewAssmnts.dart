@@ -46,8 +46,6 @@ class MyAppState extends State<View> {
                 )..show(context);
               });
             }
-            Icon icon;
-            icon = Icon(Icons.arrow_downward);
             var docs = snapshot.data.documents.reversed;
             List<Widget> doclist = [];
             for(var doc in docs) {
@@ -97,7 +95,7 @@ class MyAppState extends State<View> {
                       child: ListTileTheme(
                         iconColor: Colors.white,
                         textColor: Colors.white,
-                        child: ListTile(title: Text(title), trailing: icon, onTap: dload,onLongPress: dloadOrDel, ))
+                        child: ListTile(title: Text(title), trailing: Icon(Icons.arrow_downward), onTap: dload,onLongPress: dloadOrDel, ))
                     ),
                   ]
                 )
