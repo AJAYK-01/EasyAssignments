@@ -146,6 +146,7 @@ class MyAppState extends State<Upload> {
                                   )..show(context);
                               }
                               success = false;
+                              name = null;
                             }                        
                         }
                       },
@@ -239,7 +240,7 @@ class MyAppState extends State<Upload> {
           onPressed: () async {
             success = true;
             if(name == null) {
-              name = 'Untitled+$ext';
+              name = 'Untitled$ext';
             }
             Navigator.of(context).pop();
           },
