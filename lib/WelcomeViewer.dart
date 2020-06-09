@@ -120,7 +120,7 @@ class _WelcomeViewerState extends State<WelcomeViewer> {
               ),
               items: subList.map((listItem) {
                 return DropdownMenuItem(
-                value: listItem,
+                value: listItem.id,
                 child: Row(
                   children: <Widget>[
                     Text(listItem.id, style: TextStyle(color: Colors.white),),
