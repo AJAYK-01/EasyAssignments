@@ -215,7 +215,7 @@ class MyAppState extends State<Upload> {
            // autofocus: true,
             keyboardType: TextInputType.text,
             decoration: InputDecoration(
-              hintText: 'Subject', 
+              hintText: 'Subject_Author', 
             ),
             onChanged: (value) {
                 setState(() {

@@ -33,6 +33,19 @@ class MyAppState extends State<View> {
                 child: CircularProgressIndicator(),
               );
             }
+            if(this.uploader) { 
+              WidgetsBinding.instance.addPostFrameCallback((_) {
+                  Flushbar(
+                    isDismissible: true,
+                    message: 'Lorem Ipsum',
+                    backgroundColor: Colors.white,
+                    icon: Icon(Icons.info),
+                    messageText: Text('Long Press to Delete', style: TextStyle(fontSize: 14),),
+                    flushbarStyle: FlushbarStyle.FLOATING,
+                    duration: Duration(seconds: 3),
+                )..show(context);
+              });
+            }
             Icon icon;
             icon = Icon(Icons.arrow_downward);
             var docs = snapshot.data.documents.reversed;
