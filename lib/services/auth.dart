@@ -1,3 +1,4 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 //import 'package:cloud_storage/widget/inputEmail.dart';
 
@@ -66,4 +67,35 @@ class AuthServ {
         return null;
       }
     }
+}
+
+Uploaders _$UploadersFromJson(Map<String, dynamic> json) {
+      return Uploaders(
+        json['name'] as String,
+      )..id = json['id'] as String;
+}
+ Map<String, dynamic> _$UploadersToJson(Uploaders instance) => <String, dynamic>{
+          'id': instance.id,
+          'name': instance.name,
+};
+
+class Uploaders {
+    String id, name;
+
+    Uploaders(this.name);
+
+    Stream<List<Uploaders>> streamOfUsers() {
+      var ref = Firestore.instance.collection('uploaders');
+      return ref.snapshots().map((list) => list.documents.map((doc) => Uploaders.fromFirestore(doc)).toList());
+    }
+        
+    factory Uploaders.fromJson(Map<String, dynamic> json) => _$UploadersFromJson(json);
+
+    Map<dynamic, dynamic> toJson() => _$UploadersToJson(this);
+
+    factory Uploaders.fromFirestore(DocumentSnapshot documentSnapshot) {
+      Uploaders user = Uploaders.fromJson(documentSnapshot.data);
+      user.id = documentSnapshot.documentID;
+      return user;
+  }
 }

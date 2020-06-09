@@ -1,16 +1,21 @@
-import 'package:cloud_storage/services/auth.dart';
+//import 'package:cloud_storage/services/auth.dart';
+import 'package:flushbar/flushbar.dart';
 import 'package:flutter/material.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:provider/provider.dart';
+//import 'package:provider/provider.dart';
 import 'package:url_launcher/url_launcher.dart';
 
 //void main() => runApp(MyApp());
 
 class View extends StatefulWidget {
-  MyAppState createState() => new MyAppState();
+  final uploader;
+  View(this.uploader);
+  MyAppState createState() => new MyAppState(this.uploader);
 }
 
 class MyAppState extends State<View> {
+  final uploader;
+  MyAppState(this.uploader);
   final CollectionReference datas = Firestore.instance.collection("clouddata");
   Color hexToColor(String hexString, {String alphaChannel = 'FF'}) {
       return Color(int.parse(hexString.replaceFirst('#', '0x$alphaChannel')));
@@ -28,15 +33,21 @@ class MyAppState extends State<View> {
                 child: CircularProgressIndicator(),
               );
             }
-            final usr = Provider.of<User>(context);
+            if(this.uploader) { 
+              WidgetsBinding.instance.addPostFrameCallback((_) {
+                  Flushbar(
+                    isDismissible: true,
+                    message: 'Lorem Ipsum',
+                    backgroundColor: Colors.white,
+                    icon: Icon(Icons.info),
+                    messageText: Text('Long Press to Delete', style: TextStyle(fontSize: 14),),
+                    flushbarStyle: FlushbarStyle.FLOATING,
+                    duration: Duration(seconds: 3),
+                )..show(context);
+              });
+            }
             Icon icon;
-            if(usr.uid == 'NrZKC0phLnfqJh48OQfowSdZSp82')
-            {
-                icon = Icon(Icons.delete);
-            }
-            else {
-                icon = Icon(Icons.arrow_downward);
-            }
+            icon = Icon(Icons.arrow_downward);
             var docs = snapshot.data.documents.reversed;
             List<Widget> doclist = [];
             for(var doc in docs) {
@@ -52,15 +63,15 @@ class MyAppState extends State<View> {
                     throw 'Could not launch ';
                   }
               }
-              delete() async {
+              delete() {
                 setState(() async {
-                     await datas.document(docid).delete();
+                   await datas.document(docid).delete();
                 });
               }
-              dloadOrDel() {
-                  if(usr.uid == 'NrZKC0phLnfqJh48OQfowSdZSp82')
+              dloadOrDel() async {
+                  if(this.uploader)
                   {
-                      showDialog(
+                      await showDialog(
                         barrierDismissible: true,
                         context: context,
                         builder: (BuildContext context) => _delDialog(context),
@@ -86,7 +97,7 @@ class MyAppState extends State<View> {
                       child: ListTileTheme(
                         iconColor: Colors.white,
                         textColor: Colors.white,
-                        child: ListTile(title: Text(title), trailing: icon, onTap: dloadOrDel, ))
+                        child: ListTile(title: Text(title), trailing: icon, onTap: dload,onLongPress: dloadOrDel, ))
                     ),
                   ]
                 )
@@ -117,11 +128,9 @@ class MyAppState extends State<View> {
     child: Text('No'),
     ),
     FlatButton(
-      onPressed: () async {
-        setState(() {
-          del = true;
-       });
-      Navigator.of(context).pop();
+      onPressed: () {
+        del = true;
+        Navigator.of(context).pop();
       },
       textColor: Theme.of(context).primaryColor,
       child: Text('Yes'),
