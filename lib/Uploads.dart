@@ -44,7 +44,8 @@ class MyAppState extends State<Upload> {
   brwse() async {
      file = await FilePicker.getFile(type: FileType.any);
      String extension(String path) => context.extension(path);
-     ext = extension(basename(file.path));
+     if(file != null) 
+        ext = extension(basename(file.path));
      return file;
   }
   Future<dynamic> upload() async {
