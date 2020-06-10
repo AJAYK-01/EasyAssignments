@@ -1,10 +1,7 @@
 import 'package:cloud_storage/WelcomeViewer.dart';
 import 'package:flutter/material.dart';
-
 import 'package:firebase_messaging/firebase_messaging.dart';
-
 import '../ViewAssmnts.dart';
-//import 'package:cloud_firestore/cloud_firestore.dart';
 
 class NotificationHandler extends StatefulWidget {
   @override
@@ -12,7 +9,6 @@ class NotificationHandler extends StatefulWidget {
 }
 
 class _NotificationHandlerState extends State<NotificationHandler> {
-  //final Firestore _db = Firestore.instance;
   final FirebaseMessaging _fcm = FirebaseMessaging();
 
     @override

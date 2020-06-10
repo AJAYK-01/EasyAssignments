@@ -9,7 +9,6 @@ import 'package:flutter/material.dart';
 import 'package:cloud_storage/widget/textLogin.dart';
 import 'package:cloud_storage/widget/verticalText.dart';
 
-//final _formKey = new GlobalKey<FormState>();
  String _email;
 String _password;
 
@@ -129,8 +128,6 @@ class PasswordInputState extends State<PasswordInput> {
             else
                 print('Error');
           }); },
-          // validator: (value) => value.isEmpty ? 'Please enter password!' : null,
-          // onSaved: (value) => _password = '$value'.trim(),
         ),
       ),
     );
@@ -159,7 +156,6 @@ class _ButtonLoginState extends State<ButtonLogin> {
         print(result);
         _password = '######################';
         _email = '#############';
-        //Navigator.push(context, MaterialPageRoute(builder: (BuildContext context) => Upload()));
    }
   }
   @override

@@ -1,11 +1,7 @@
-//import 'package:cloud_storage/services/auth.dart';
 import 'package:flushbar/flushbar.dart';
 import 'package:flutter/material.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
-//import 'package:provider/provider.dart';
 import 'package:url_launcher/url_launcher.dart';
-
-//void main() => runApp(MyApp());
 
 class View extends StatefulWidget {
   final uploader;

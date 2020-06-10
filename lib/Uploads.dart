@@ -3,24 +3,15 @@ import 'package:cloud_storage/ViewAssmnts.dart';
 import 'package:cloud_storage/ViewRequests.dart';
 import 'package:flushbar/flushbar.dart';
 import 'package:progress_dialog/progress_dialog.dart';
-//import 'package:cloud_storage/pages/rootpage.dart';
 import 'package:cloud_storage/services/auth.dart';
 import 'package:file_picker/file_picker.dart';
 import 'package:flutter/material.dart';
 import 'package:path/path.dart';
 import 'package:firebase_storage/firebase_storage.dart';
 import 'package:imagebutton/imagebutton.dart';
-// import 'package:firebase_database/firebase_database.dart';
-// import 'package:flutter/services.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 
-
-//void main() => runApp(MyApp());
-
-//final dbstorageRef = FirebaseDatabase.instance.reference();
 final CollectionReference datas = Firestore.instance.collection("clouddata");
-
-//Query lastQuery = dbstorageRef.limitToLast(1);
 
 var name;
 var ext;
@@ -67,11 +58,6 @@ class MyAppState extends State<Upload> {
         status = 'Please Select a File First!!';
       });
     }
-   //pick image   use ImageSource.camera for accessing camera. 
-   //File image = await ImagePicker.pickImage(source: ImageSource.gallery);
-
-   //basename() function will give you the filename
-   //name = basename(file.path);
 
    //passing your path with the filename to Firebase Storage Reference
    StorageReference reference =

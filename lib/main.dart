@@ -19,9 +19,6 @@ class MyApp extends StatelessWidget {
         ],
         child:  MaterialApp(
               title: 'Easy Assignments',
-              // theme: ThemeData(
-              //   primarySwatch: Colors.blue,
-              // ),
               home: Root(), //should be RootPage
               debugShowCheckedModeBanner: false,
             ),
