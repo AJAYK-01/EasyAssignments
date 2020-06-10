@@ -1,16 +1,21 @@
-# cloud_storage
+# Easy Assignments
 
-A new Flutter project.
+A Flutter + Firebase project for easy sharing of Assignments
 
-## Getting Started
+## Description
 
-This project is a starting point for a Flutter application.
+This Project is been made to facilitate easy sharing of Assignments between the 10 Pointers and the normies.  
 
-A few resources to get you started if this is your first Flutter project:
+## Features
+- Cloud based Notifications to alert user when a new assignment gets Uploaded
+- Option for the to send assignment requests
+- Separate accounts for uploader and user to avoid spamming
+- Users can be added or removed anytime using the firebase database
 
-- [Lab: Write your first Flutter app](https://flutter.dev/docs/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://flutter.dev/docs/cookbook)
-
-For help getting started with Flutter, view our
-[online documentation](https://flutter.dev/docs), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+## How to use
+- Clone the repo
+- Create a Firebase account and link project with it
+- Create databases 'clouddata', 'requests', 'subjects' and 'uploaders' in Firebase
+- Add your Uploader accounts and Subjects to the respective databases
+- Deploy the functions folder from the project into Firebase Cloud Functions for adding Notifications
+- Build the App and voila!!
