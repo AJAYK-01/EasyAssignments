@@ -26,10 +26,14 @@ var name;
 var ext;
 
 class Upload extends StatefulWidget {
-  MyAppState createState() => new MyAppState();
+  final String uname;
+  Upload(this.uname);
+  MyAppState createState() => new MyAppState(this.uname);
 }
 
 class MyAppState extends State<Upload> {
+  final String uname;
+  MyAppState(this.uname);
   final CollectionReference datas = Firestore.instance.collection("clouddata");
   File file;
   String url;
@@ -216,11 +220,11 @@ class MyAppState extends State<Upload> {
            // autofocus: true,
             keyboardType: TextInputType.text,
             decoration: InputDecoration(
-              hintText: 'Subject_Author', 
+              hintText: 'Subject', 
             ),
             onChanged: (value) {
                 setState(() {
-                    name = value+ext;
+                    name = value+' $uname'+ext;
                 });
             },
           ),
@@ -240,7 +244,7 @@ class MyAppState extends State<Upload> {
           onPressed: () async {
             success = true;
             if(name == null) {
-              name = 'Untitled$ext';
+              name = 'Untitled $uname$ext';
             }
             Navigator.of(context).pop();
           },

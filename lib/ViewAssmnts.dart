@@ -61,10 +61,8 @@ class MyAppState extends State<View> {
                     throw 'Could not launch ';
                   }
               }
-              delete() {
-                setState(() async {
+              delete() async {
                    await datas.document(docid).delete();
-                });
               }
               dloadOrDel() async {
                   if(this.uploader)

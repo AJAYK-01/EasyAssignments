@@ -27,7 +27,7 @@ class Root extends StatelessWidget {
     if(usr == null)
         return LoginPage();
     else if(key)
-        return Upload();
+        return Upload(usr.uname);
     else if(!key)
         return NotificationHandler(); 
     return LoginPage(); 

@@ -31,9 +31,7 @@ class _ViewRequestsState extends State<ViewRequests> {
               final docid = doc.documentID;
               final count = doc.data['number'];
               delete() async {
-                setState(() async {
-                     await rqstData.document(docid).delete();
-                });
+                  await rqstData.document(docid).delete();
               }
               
               doclist.add(

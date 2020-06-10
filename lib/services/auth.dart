@@ -10,7 +10,7 @@ class User {
 class AuthServ {
     final FirebaseAuth _auth = FirebaseAuth.instance;
     User createFBaseUser(FirebaseUser usr) {
-        return usr!=null? User(uid: usr.uid, uname: usr.email+'\b\b\b\b\b\b\b\b\b\b') : null;   
+        return usr!=null? User(uid: usr.uid, uname: usr.email.split('@').elementAt(0)) : null;   
     }
 
     // user auth change stream
