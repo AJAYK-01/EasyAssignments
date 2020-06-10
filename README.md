@@ -16,7 +16,7 @@ This Project is been made to facilitate easy sharing of Assignments between the 
 
 ## Features
 - Cloud based Notifications to alert user when a new assignment gets Uploaded
-- Option for the to send assignment requests
+- Option for the user to send assignment requests
 - Separate accounts for uploader and user to avoid spamming
 - Users can be added or removed anytime using the firebase database
 
