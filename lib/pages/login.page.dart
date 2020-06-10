@@ -1,15 +1,9 @@
-// import 'package:cloud_storage/Uploads.dart';
 import 'package:cloud_storage/services/auth.dart';
 import 'package:flutter/material.dart';
-// import 'package:cloud_storage/widget/button.dart';
-//import 'package:cloud_storage/widget/first.dart';
-//import 'package:cloud_storage/widget/forgot.dart';
-// import 'package:cloud_storage/widget/inputEmail.dart';
-// import 'package:cloud_storage/widget/password.dart';
 import 'package:cloud_storage/widget/textLogin.dart';
 import 'package:cloud_storage/widget/verticalText.dart';
 
- String _email;
+String _email;
 String _password;
 
 class LoginPage extends StatefulWidget {
@@ -89,8 +83,6 @@ class InputEmailState extends State<InputEmail> {
                    print('Error');
               }
           }); },
-         // validator: (value) => value.isEmpty ? 'Email can\'t be empty' : null,
-         // onSaved: (value) {usrnm = '$value@gmail.com'.trim(); }//print(usrnm);,
         ),
       ),
     );
