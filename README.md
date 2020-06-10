@@ -17,5 +17,7 @@ This Project is been made to facilitate easy sharing of Assignments between the 
 - Create a Firebase account and link project with it
 - Create databases 'clouddata', 'requests', 'subjects' and 'uploaders' in Firebase
 - Add your Uploader accounts and Subjects to the respective databases
-- Deploy the functions folder from the project into Firebase Cloud Functions for adding Notifications
+- Create Firebase Cloud Function with Typescript 
+- Replace the src/index.ts in your functions folder with the file from functions folder of this repo
+- Deploy your functions into Firebase for getting seamless CLoud Based Notifications
 - Build the App and voila!!
