@@ -6,6 +6,14 @@ A Flutter + Firebase project for easy sharing of Assignments
 
 This Project is been made to facilitate easy sharing of Assignments between the 10 Pointers and the normies.  
 
+## Screenshots
+<p align="middle">
+  <img src="https://github.com/AJAYK-01/EasyAssignments/blob/master/Screenshots/Screenshot_2020-06-10-22-15-53-857_com.ajayk.cloud_storage.jpg" width="180" height="360" />
+  <img src="https://github.com/AJAYK-01/EasyAssignments/blob/master/Screenshots/Screenshot_2020-06-08-18-01-06-931_com.ajayk.cloud_storage.jpg" width="180" height="360" /> 
+  <img src="https://github.com/AJAYK-01/EasyAssignments/blob/master/Screenshots/Screenshot_2020-06-10-18-54-10-991_com.ajayk.cloud_storage.jpg" width="180" height="360"" />
+  <img src="https://github.com/AJAYK-01/EasyAssignments/blob/master/Screenshots/Screenshot_2020-06-05-22-57-12-394_com.ajayk.cloud_storage.jpg" width="180" height="360"" />
+</p>
+
 ## Features
 - Cloud based Notifications to alert user when a new assignment gets Uploaded
 - Option for the to send assignment requests
