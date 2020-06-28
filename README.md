@@ -15,6 +15,7 @@ This Project is been made to facilitate easy sharing of Assignments between the 
 </p>
 
 ## Features
+- Supports Android's Native Share to feature to share files directly into app
 - Cloud based Notifications to alert user when a new assignment gets Uploaded
 - Option for the user to send assignment requests
 - Separate accounts for uploader and user to avoid spamming
