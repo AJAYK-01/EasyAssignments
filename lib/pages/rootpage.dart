@@ -1,7 +1,7 @@
 import 'package:cloud_storage/services/auth.dart';
 import 'package:cloud_storage/services/notifications.dart';
+import 'package:cloud_storage/services/receiveshare.dart';
 import 'package:flutter/material.dart';
-import 'package:cloud_storage/Uploads.dart';
 import 'package:provider/provider.dart';
 
 import 'login.page.dart';
@@ -25,7 +25,7 @@ class Root extends StatelessWidget {
     if(usr == null)
         return LoginPage();
     else if(key)
-        return Upload(usr.uname);
+        return Share(usr.uname);
     else if(!key)
         return NotificationHandler(); 
     return LoginPage(); 

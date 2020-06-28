@@ -11,7 +11,7 @@ import 'package:firebase_storage/firebase_storage.dart';
 import 'package:imagebutton/imagebutton.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 
-final CollectionReference datas = Firestore.instance.collection("clouddata");
+// final CollectionReference datas = Firestore.instance.collection("clouddata");
 
 var name;
 var ext;
@@ -19,7 +19,7 @@ var ext;
 class Upload extends StatefulWidget {
   final String uname;
   Upload(this.uname);
-  MyAppState createState() => new MyAppState(this.uname);
+  MyAppState createState() => MyAppState(this.uname);
 }
 
 class MyAppState extends State<Upload> {
@@ -204,7 +204,7 @@ class MyAppState extends State<Upload> {
         children: <Widget>[
           Text("Assignment Title:", style: TextStyle(color: Colors.blue),),
           TextFormField(
-           // autofocus: true,
+           autofocus: true,
             keyboardType: TextInputType.text,
             decoration: InputDecoration(
               hintText: 'Subject', 
@@ -212,6 +212,9 @@ class MyAppState extends State<Upload> {
             onChanged: (value) {
                 setState(() {
                     name = value+' $uname'+ext;
+                    if(value == null) {
+                      name = 'Untitled $uname$ext';
+                    }
                 });
             },
           ),

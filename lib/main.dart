@@ -2,7 +2,6 @@ import 'package:cloud_storage/pages/rootpage.dart';
 import 'package:cloud_storage/services/auth.dart';
 import 'package:cloud_storage/services/subjects.dart';
 import 'package:flutter/material.dart';
-//import 'package:cloud_storage/pages/login.page.dart';
 import 'package:provider/provider.dart';
 
 void main() => runApp(MyApp());
