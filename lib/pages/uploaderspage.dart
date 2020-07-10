@@ -1,6 +1,6 @@
 import 'dart:io';
-import 'package:cloud_storage/ViewAssmnts.dart';
-import 'package:cloud_storage/ViewRequests.dart';
+import 'package:cloud_storage/pages/ViewAssmnts.dart';
+import 'package:cloud_storage/pages/ViewRequests.dart';
 import 'package:flushbar/flushbar.dart';
 import 'package:progress_dialog/progress_dialog.dart';
 import 'package:cloud_storage/services/auth.dart';

@@ -1,7 +1,7 @@
-import 'package:cloud_storage/WelcomeViewer.dart';
+import 'package:cloud_storage/pages/WelcomeViewer.dart';
 import 'package:flutter/material.dart';
 import 'package:firebase_messaging/firebase_messaging.dart';
-import '../ViewAssmnts.dart';
+import '../pages/ViewAssmnts.dart';
 
 class NotificationHandler extends StatefulWidget {
   @override

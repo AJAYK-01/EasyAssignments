@@ -5,7 +5,7 @@ import 'package:cloud_storage/pages/sharepage.dart';
 import 'package:flutter/material.dart';
 import 'package:receive_sharing_intent/receive_sharing_intent.dart';
 
-import '../Uploads.dart';
+import '../pages/uploaderspage.dart';
 
 class Share extends StatefulWidget {
   final String uname;
