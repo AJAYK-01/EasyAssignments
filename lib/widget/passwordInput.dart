@@ -3,7 +3,9 @@ import 'package:flutter/material.dart';
 class PasswordInput extends StatelessWidget {
 
   final void Function(String value) onChanged;
-  PasswordInput({this.onChanged});
+  final void Function(String value) onFieldSubmitted;
+  final FocusNode focusNode;
+  PasswordInput({this.onChanged, this.onFieldSubmitted, this.focusNode});
 
   @override
   Widget build(BuildContext context) {
@@ -17,6 +19,7 @@ class PasswordInput extends StatelessWidget {
             color: Colors.white,
           ),
           obscureText: true,
+          textInputAction: TextInputAction.done,
           decoration: InputDecoration(
             border: InputBorder.none,
             labelText: 'Password',
@@ -25,6 +28,8 @@ class PasswordInput extends StatelessWidget {
             ),
           ),
           onChanged: (value) => onChanged(value),
+          focusNode: focusNode,
+          onFieldSubmitted: (value) => onFieldSubmitted(value),
         ),
       ),
     );

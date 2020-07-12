@@ -3,7 +3,9 @@ import 'package:flutter/material.dart';
 class InputEmail extends StatelessWidget {
 
   final void Function(String value) onChanged;
-  InputEmail({this.onChanged});
+  final void Function(String value) onFieldSubmitted;
+  final FocusNode focusNode;
+  InputEmail({this.onChanged, this.onFieldSubmitted, this.focusNode});
 
   @override
   Widget build(BuildContext context) {
@@ -14,6 +16,8 @@ class InputEmail extends StatelessWidget {
         width: MediaQuery.of(context).size.width,
         child: TextFormField(
           keyboardType: TextInputType.text,
+          textInputAction: TextInputAction.next,
+          focusNode: focusNode,
           style: TextStyle(
             color: Colors.white,
           ),
@@ -26,6 +30,7 @@ class InputEmail extends StatelessWidget {
             ),
           ),
           onChanged: (value) => onChanged(value),
+          onFieldSubmitted: (value) => onFieldSubmitted(value),
         ),
       ),
     );

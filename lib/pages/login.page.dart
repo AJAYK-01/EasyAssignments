@@ -13,8 +13,12 @@ class LoginPage extends StatefulWidget {
 }
 
 class _LoginPageState extends State<LoginPage> {
+
   String _email;
   String _password;
+  final FocusNode _emailFocus = FocusNode();
+  final FocusNode _pwdFocus = FocusNode();
+  
   Color hexToColor(String hexString, {String alphaChannel = 'FF'}) {
       return Color(int.parse(hexString.replaceFirst('#', '0x$alphaChannel')));
   }
@@ -68,6 +72,11 @@ class _LoginPageState extends State<LoginPage> {
                       }
                     }); 
                   },
+                  focusNode: _emailFocus,
+                  onFieldSubmitted: (value) {
+                    _emailFocus.unfocus();
+                    FocusScope.of(context).requestFocus(_pwdFocus);
+                  }
                 ),
                 PasswordInput(
                   onChanged: (value) { setState(() {
@@ -76,6 +85,11 @@ class _LoginPageState extends State<LoginPage> {
                       else
                           print('Error');
                     }); 
+                  },
+                  focusNode: _pwdFocus,
+                  onFieldSubmitted: (value) {
+                    _pwdFocus.unfocus();
+                    login();
                   },
                 ),
                 ButtonLogin(
