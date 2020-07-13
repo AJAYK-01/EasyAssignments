@@ -3,7 +3,9 @@ import 'package:flutter/material.dart';
 class ButtonLogin extends StatelessWidget {
 
   final void Function() onTap ;
-  ButtonLogin({this.onTap});
+  final String buttonText;
+  final IconData buttonIcon;
+  ButtonLogin({this.onTap, this.buttonText = "OK ", this.buttonIcon = Icons.arrow_forward});
 
   @override
   Widget build(BuildContext context) {
@@ -34,7 +36,7 @@ class ButtonLogin extends StatelessWidget {
             mainAxisAlignment: MainAxisAlignment.center,
             children: <Widget>[
               Text(
-                'OK',
+                buttonText,
                 style: TextStyle(
                   color: Colors.black,
                   fontSize: 14,
@@ -42,8 +44,9 @@ class ButtonLogin extends StatelessWidget {
                 ),
               ),
               Icon(
-                Icons.arrow_forward,
+                buttonIcon,
                 color: Colors.black,
+                size: 19,
               ),
             ],
           ),

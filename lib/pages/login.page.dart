@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flushbar/flushbar.dart';
 
 import 'package:cloud_storage/widget/emailInput.dart';
 import 'package:cloud_storage/widget/passwordInput.dart';
@@ -16,29 +17,49 @@ class _LoginPageState extends State<LoginPage> {
 
   String _email;
   String _password;
+  String _loading = "OK ";
+  IconData _buttonIcon = Icons.arrow_forward;
+
+  final AuthServ _auth = AuthServ();
   final FocusNode _emailFocus = FocusNode();
   final FocusNode _pwdFocus = FocusNode();
+  final Flushbar _msgBar = Flushbar(
+          message: 'Lorem Ipsum',
+          backgroundColor: Colors.white,
+          icon: Icon(Icons.warning),
+          messageText: Text('Login Failed', style: TextStyle(fontSize: 14),),
+          flushbarStyle: FlushbarStyle.FLOATING,
+          duration: Duration(seconds: 2),
+        );
   
   Color hexToColor(String hexString, {String alphaChannel = 'FF'}) {
       return Color(int.parse(hexString.replaceFirst('#', '0x$alphaChannel')));
   }
 
-  final AuthServ _auth = AuthServ();
-
-  login() async {
+  Future<bool> login() async {
     //get uname and pwd here
+    setState(() {
+      _loading = "Loading...";
+      _buttonIcon = null;
+    });
     dynamic result = await _auth.singInEmailPwd(_email,_password);
+    setState(() {
+      _loading = "OK ";
+      _buttonIcon = Icons.arrow_forward;
+    });
     print(_email);
 
     if(result == null)
     {
         print("Sed");
+        return true;
     }
     else{
         print(result);
         _password = '######################';
         _email = '#############';
    }
+   return false;
   }
 
   @override
@@ -87,13 +108,25 @@ class _LoginPageState extends State<LoginPage> {
                     }); 
                   },
                   focusNode: _pwdFocus,
-                  onFieldSubmitted: (value) {
+                  onFieldSubmitted: (value) async {
                     _pwdFocus.unfocus();
-                    login();
+                    bool _failed = await login();
+                    if(_failed) {
+                      _msgBar.show(context);
+                      FocusScope.of(context).requestFocus(_emailFocus);
+                    }
                   },
                 ),
                 ButtonLogin(
-                  onTap: login,
+                  onTap: () async {
+                    bool _failed = await login();
+                    if(_failed == true) {
+                      _msgBar.show(context);
+                      FocusScope.of(context).requestFocus(_emailFocus);
+                    }
+                  },
+                  buttonText: _loading,
+                  buttonIcon: _buttonIcon,
                 ),
                 //FirstTime(),
               ],
