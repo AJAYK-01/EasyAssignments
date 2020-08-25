@@ -2,8 +2,12 @@ import 'package:cloud_storage/pages/WelcomeViewer.dart';
 import 'package:flutter/material.dart';
 import 'package:firebase_messaging/firebase_messaging.dart';
 import '../pages/ViewAssmnts.dart';
+import 'receiveshare.dart';
 
 class NotificationHandler extends StatefulWidget {
+  final String uname;
+  final bool uploader;
+  NotificationHandler(this.uname, this.uploader);
   @override
   _NotificationHandlerState createState() => _NotificationHandlerState();
 }
@@ -45,6 +49,9 @@ class _NotificationHandlerState extends State<NotificationHandler> {
 
   @override
   Widget build(BuildContext context) {
+    if(widget.uploader == true)
+      return Share(widget.uname);
+
     return WelcomeViewer();
   }
 }
