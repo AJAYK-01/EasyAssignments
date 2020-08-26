@@ -105,8 +105,6 @@ class _SharePageState extends State<SharePage> {
                   child: Text("Upload", style: TextStyle(color: Colors.white, fontSize: 20),),
                   elevation: 10,
                   onPressed: () async {
-                    print('hello');
-                    print(fileName+"please");
                     await pr.show();
                     await upload();
                     await pr.hide();
@@ -131,7 +129,6 @@ class _SharePageState extends State<SharePage> {
                 width: MediaQuery.of(context).size.width/1.05,
                 child: RawMaterialButton(
                   onPressed: () async {
-                    // exit(0);
                     await SystemNavigator.pop();
                   }, 
                   child: Text("Cancel", style: TextStyle(color: Colors.red, fontSize: 20),),

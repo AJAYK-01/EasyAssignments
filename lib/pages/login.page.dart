@@ -51,7 +51,6 @@ class _LoginPageState extends State<LoginPage> {
 
     if(result == null)
     {
-        print("Sed");
         return true;
     }
     else{
@@ -85,10 +84,8 @@ class _LoginPageState extends State<LoginPage> {
                     setState(() {
                       if(value.isNotEmpty)
                       {    _email = '$value@gmail.com'.trim();
-                        // print(getusrnm()); 
                         }
                       else{ 
-                          // print(getusrnm());
                           print('Error');
                       }
                     }); 
@@ -128,7 +125,6 @@ class _LoginPageState extends State<LoginPage> {
                   buttonText: _loading,
                   buttonIcon: _buttonIcon,
                 ),
-                //FirstTime(),
               ],
             ),
           ],
