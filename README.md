@@ -6,6 +6,8 @@ A Flutter + Firebase project for easy sharing of Assignments
 
 This Project is been made to facilitate easy sharing of Assignments between the 10 Pointers and the normies.  
 
+### Big Thanks to [@GameGodS3](https://github.com/GameGodS3) for designing the UI :blush::blush:
+
 ## Screenshots
 <p align="middle">
   <img src="https://github.com/AJAYK-01/EasyAssignments/blob/master/Screenshots/Screenshot_2020-06-10-22-15-53-857_com.ajayk.cloud_storage.jpg" width="180" height="360" />
